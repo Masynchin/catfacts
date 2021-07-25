@@ -19,10 +19,12 @@ func init() {
 	flag.IntVar(&factsCount, "n", 5, "facts count, cannot be lower than 1")
 }
 
+// Fact is model representation of single fact from API's response
 type Fact struct {
 	Text string `json:"text"`
 }
 
+// parse user options if provided and print cat facts
 func main() {
 	flag.Parse()
 	if factsCount < 1 {
@@ -51,6 +53,7 @@ func main() {
 	}
 }
 
+// make request to API
 func makeRequest() (*http.Response, error) {
 	url := fmt.Sprintf(urlTemplate, factsCount)
 	resp, err := http.Get(url)
@@ -60,6 +63,7 @@ func makeRequest() (*http.Response, error) {
 	return resp, nil
 }
 
+// in case of only 1 facts count API responses with JSON dict 
 func printSingleFact(data []byte) {
 	var f Fact
 	if err := json.Unmarshal(data, &f); err != nil {
@@ -68,6 +72,7 @@ func printSingleFact(data []byte) {
 	printFact(f)
 }
 
+// in case of more that 1 facts count API responses with JSON array
 func printManyFacts(data []byte) {
 	var facts []Fact
 	if err := json.Unmarshal(data, &facts); err != nil {
@@ -78,6 +83,7 @@ func printManyFacts(data []byte) {
 	}
 }
 
+// print fact to console
 func printFact(f Fact) {
 	fmt.Println(f.Text)
 }
