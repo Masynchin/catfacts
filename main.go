@@ -33,10 +33,11 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	defer resp.Body.Close()
+
 	if resp.StatusCode != http.StatusOK {
 		log.Fatal(errors.New("Server did not respond correctly"))
 	}
-	defer resp.Body.Close()
 
 	data, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
