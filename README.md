@@ -3,7 +3,12 @@ CLI that fetches cat facts from cat-fact.herokuapp.com (or as [github repo](http
 
 ## Installing
 
-You can install this program with command `go get github.com/Masynchin/catfacts`
+You can install this program with commands
+```
+git clone https://github.com/Masynchin/catfacts.git
+cd catfacts
+go build
+```
 
 ## Usage
 
