@@ -1,5 +1,5 @@
 # catfacts
-CLI that fetches cat facts from cat-fact.herokuapp.com (or as [github repo](https://github.com/alexwohlbruck/cat-facts))
+CLI that fetches cat facts from [cat-fact.herokuapp.com](https://cat-fact.herokuapp.com) (or as [github repo](https://github.com/alexwohlbruck/cat-facts))
 
 ## Installing
 
