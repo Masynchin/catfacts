@@ -11,13 +11,9 @@ import (
 )
 
 var (
-	factsCount int
+	factsCount  = flag.Int("n", 5, "facts count, cannot be lower than 1")
 	urlTemplate = "https://cat-fact.herokuapp.com/facts/random?amount=%v"
 )
-
-func init() {
-	flag.IntVar(&factsCount, "n", 5, "facts count, cannot be lower than 1")
-}
 
 // Fact is model representation of single fact from API's response
 type Fact struct {
@@ -27,7 +23,7 @@ type Fact struct {
 // parse user options if provided and print cat facts
 func main() {
 	flag.Parse()
-	if factsCount < 1 {
+	if *factsCount < 1 {
 		log.Fatal(errors.New("Facts count must be positive number"))
 	}
 
@@ -46,7 +42,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	if factsCount == 1 {
+	if *factsCount == 1 {
 		printSingleFact(data)
 	} else {
 		printManyFacts(data)
@@ -63,7 +59,7 @@ func makeRequest() (*http.Response, error) {
 	return resp, nil
 }
 
-// in case of only 1 facts count API responses with JSON dict 
+// in case of only 1 facts count API responses with JSON dict
 func printSingleFact(data []byte) {
 	var f Fact
 	if err := json.Unmarshal(data, &f); err != nil {
