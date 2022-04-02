@@ -5,9 +5,8 @@ import (
 	"log"
 )
 
-var factsCount = flag.Int("n", 5, "facts count, cannot be lower than 1")
-
 func main() {
+	factsCount := flag.Int("n", 5, "facts count, cannot be lower than 1")
 	flag.Parse()
 
 	facts, err := NewCatFacts(*factsCount).Get()

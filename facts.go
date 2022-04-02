@@ -25,7 +25,7 @@ func NewCatFacts(count int) CatFacts {
 
 // Get returns cat facts.
 func (f CatFacts) Get() ([]Fact, error) {
-	if *factsCount < 1 {
+	if f.count < 1 {
 		return nil, errors.New("Facts count must be positive number")
 	}
 
